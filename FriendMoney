@@ -1,0 +1,69 @@
+import time
+import random
+from random import choice
+from string import digits
+from string import ascii_letters
+from selenium import webdriver
+from test.support import get_attribute
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support import expected_conditions as EC
+
+
+'''ypa'''
+
+
+def submit(link):
+    try:
+        opaName=['marija','ganna','valentyna','olga','galyna','tetjana','nadija','ljudmyla','olena','natalija','nina','ljubov','kateryna','svitlana','lidija','vira','iryna','oksana','oleksandra','raisa','tamara','larysa','antonina','jevgenija','anastasija','alla','jevdokija','zinaida','julija','natalja','sofija','viktorija','maryna','inna','zoja','varvara','paraskovija','klavdija','lilija','uljana','stefanija','jaroslava','lesja','ksenija','vasylyna','jefrosynija','darija','motrona','polina','nelja','melanija','paraska','jelyzaveta','ivanna','zhanna','myroslava','stepanija','pelageja','pelagija','taisija','marfa','jeva','majja','neonila','alina','pavlina','emilija','taisa','alona','vita','anzhela','fedora','olesja','stanislava','margaryta','jana','jevgena','tamila','zinovija','hrystyna','dina','ruslana','agafija','stepanyda','ganni','rozalija','feodosija','lina','marta','leonida','orysja','teklja','juli','bronislava','janina','darja','jelizaveta','nila','marjana','raisa','mykola','volodymyr','oleksandr','ivan','vasyl','sergij','viktor','anatolij','myhajlo','petro','jurij','andrij','oleksij','grygorij','vitalij','igor','dmytro','oleg','valerij','leonid','pavlo','stepan','roman','borys','fedir','valentyn','jevgen','jaroslav','vjacheslav','bogdan','stanislav','gennadij','ruslan','georgij','kostjantyn','jevgenij','vadym','maksym','anton','illja','vladyslav','jakiv','taras','josyp','semen','eduard','myroslav','denys','artem','rostyslav','zinovij','arkadij','leontij','myron','orest','adam','genadij','pylyp','tymofij','ljubomyr','artur','svjatoslav','bronislav','kyrylo','rustem','stefan','danylo','josyf','jegor','fedor','marjan','afanasij','zenovij','omeljan','server','franc','juhym','mykyta','albert','lev','feodosij','arsen','sergej','vsevolod','demjan','gavrylo','vladymyr','alim','panas','ajder','kuzma','nazar','kazymyr','trohym','sava','jevstahij','ananij','ostap','teodor','nariman']
+        opaSurname=['melnyk','shevchenko','bojko','kovalenko','bondarenko','tkachenko','kovalchuk','kravchenko','olijnyk','shevchuk','koval','polishhuk','bondar','tkachuk','moroz','marchenko','lysenko','rudenko','savchenko','petrenko','kravchuk','klymenko','pavlenko','savchuk','kuzmenko','shvec','gavryljuk','harchenko','ponomarenko','melnychuk','vasylenko','mazur','homenko','levchenko','karpenko','kushnir','sydorenko','romanjuk','martynjuk','kolomijec','pavljuk','tkach','lytvynenko','panchenko','kostenko','kulyk','kravec','jurchenko','bilous','djachenko','semenjuk','kostjuk','gumenjuk','vovk','goncharenko','jakovenko','romanenko','pryhodko','kozak','kovtun','nazarenko','pylypenko','gonchar','ishhenko','fedorenko','goncharuk','nesterenko','kolisnyk','demchenko','tereshhenko','tyshhenko','babenko','popovych','tarasenko','makarenko','marchuk','moskalenko','zinchenko','jacenko','zhuk','lytvyn','gerasymenko','kyrychenko','kolesnyk','mishhenko','tymoshenko','palamarchuk','vlasenko','shapoval','bondarchuk','lucenko','kondratjuk','antonjuk','kornijenko','danyljuk','gordijenko','martynenko','shulga','radchenko','korol','ostapenko','stepanenko','voloshyn','golub','naumenko','bilyk','taran','dmytrenko','babych','babij','maksymenko','panasjuk','velychko','prokopenko','denysenko','didenko','melnychenko','onyshhenko','ivashhenko','kucherenko','bojchuk','doroshenko','derkach','kucher','sergijenko','zajec','serdjuk','gryshhenko','myhajlenko','bodnar','kononenko','golovko','grycenko','davydenko','pasichnyk','chumak','borysenko','ljashenko','omelchenko','skrypnyk','samojlenko','chernenko','parhomenko','procenko','gorobec','ivanchenko','koval','matvijenko','ilchenko','shpak','dzjuba','kyryljuk','rybak','ovcharenko','sereda','ostapchuk','grygorenko','jaremenko','demchuk','subjekt','voznjuk','vlasjuk','zaharchenko','myronenko','gnatjuk','avramenko','movchan','stecenko','gavrylenko','matvijchuk','glushhenko','jakymenko','jaroshenko','kulish','tarasjuk','volk','lysak','baran','antonenko','stepanjuk','pylypchuk','stasjuk','leshhenko','fesenko','ivanenko','shherbak','zaharchuk','zhuravel','slobodjanjuk','slobodjan','pashhenko','kornijchuk','pidpryjemec','dudnyk','solovej','gerasymchuk','jaremchuk','tymchenko','chernysh','gonchar']
+        chrome_options = Options()
+        chrome_options.add_experimental_option( "prefs",{'profile.managed_default_content_settings.javascript': 2})
+        driver = webdriver.Chrome('chromedriver',chrome_options=chrome_options)
+        driver.get('https://temp-mail.org/ru/')
+        #***#
+        driver.find_element_by_xpath('//a[@href= "https://temp-mail.org/ru/option/change/"]').click()
+        k = random.randint(0,195)
+        t = random.randint(0,195)
+        time.sleep(2)
+        driver.find_element_by_xpath('//input[@name = "mail"]').send_keys(opaName[k]+opaSurname[t]+str(k))
+        driver.find_element_by_xpath('//button[@id = "postbut"]').click()
+        #***#
+        power = webdriver.Firefox(executable_path = 'E:\python\geckodriver.exe')
+        power.get(link)
+        #***#
+        time.sleep(40)
+        power.find_element_by_class_name('btn-header').click()
+        time.sleep(2)
+        power.get("https://steward.friendz.io/register")
+        power.find_element_by_xpath('//input[@name = "name"]').send_keys(opaName[k])
+        power.find_element_by_xpath('//input[@name = "email"]').send_keys(opaName[k]+opaSurname[t]+str(k)+"@carbtc.net")
+        opaTel= ''.join(choice(digits) for i in range(8))
+        power.find_element_by_xpath('//input[@name = "phone"]').send_keys(opaTel)
+        el =  power.find_element_by_xpath('//select[@name = "country"]')
+        for option in el.find_elements_by_tag_name('option'):
+            if option.text == 'AI - ANGUILLA':
+               option.click() 
+               break
+        power.find_element_by_xpath('//input[@name = "password"]').send_keys("123456qQ")
+        power.find_element_by_xpath('//input[@name = "password_confirmation"]').send_keys("123456qQ")
+        power.find_element_by_xpath('//button[@type = "submit"]').click() 
+        time.sleep(5)
+        driver.find_element_by_xpath('//a[@href = "https://temp-mail.org/ru/option/refresh/"]').click() 
+        time.sleep(2)
+        driver.find_element_by_xpath('//div[@class= "content main"]/div[@class= "table-responsive mailListTable"]/table[@id= "mails"]/tbody/tr/td/a[@title="Verification"]').click() 
+        yo = driver.find_elements_by_xpath('//div[@class= "pm-text"]/div/div/a[@href]')
+        for yraaa in yo:
+            print(yraaa.get_attribute("href"))
+            ref_link=yraaa.get_attribute("href")
+        time.sleep(3)
+        power.get(ref_link)
+        time.sleep(4)
+        power.find_element_by_xpath('//a[@href= "/logout"]').click()  
+        time.sleep(2)
+        power.quit()
+        driver.quit()
+    except Exception:
+        print('Упс.')
